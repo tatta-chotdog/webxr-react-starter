@@ -4,9 +4,6 @@ export const colors = ["blue", "red", "green", "yellow", "purple"];
 
 /**
  * 色変更のロジックを管理するカスタムフック
- * - 色のインデックス管理
- * - デバウンス処理による連続変更防止
- * - メモ化された関数の提供
  */
 export const useColorChange = () => {
   const [colorIndex, setColorIndex] = useState(0);
@@ -18,7 +15,7 @@ export const useColorChange = () => {
   }, []);
 
   // デバウンス処理付きの色変更ハンドラー
-  // 300msのクールダウン期間中は追加の色変更をブロック
+  // 300msのクールダウン中は追加の色変更をブロック
   const debouncedColorChange = useCallback(() => {
     if (!isChanging) {
       setIsChanging(true);

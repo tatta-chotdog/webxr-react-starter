@@ -6,7 +6,6 @@ import { Box } from "./Box";
 export const Scene = () => {
   const { session } = useXR();
 
-  // XRセッションの状態変更を通知
   useEffect(() => {
     window.dispatchEvent(
       new CustomEvent("xrsessionupdate", { detail: { session } })

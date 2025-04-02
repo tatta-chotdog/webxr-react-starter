@@ -14,8 +14,8 @@
   left: 0;
 }
 
-/* ARボタンのスタイル */
-.ar-button {
+/* VRボタンのスタイル */
+.vr-button {
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -31,14 +31,14 @@
   z-index: 1000;
 }
 
-.ar-button:hover {
+.vr-button:hover {
   background-color: #3c45c8cc;
 }
 
-.ar-button.active {
+.vr-button.active {
   background-color: #4caf50;
 }
 
-.ar-button.active:hover {
+.vr-button.active:hover {
   background-color: #45a049;
 }

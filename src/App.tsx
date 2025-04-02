@@ -3,44 +3,41 @@ import { XR, createXRStore } from "@react-three/xr";
 import { useState, useEffect } from "react";
 import { XRDevice, metaQuest3 } from "iwer";
 import { Scene } from "./components/Scene";
-import { ARButton } from "./components/ARButton";
+import { VRButton } from "./components/VRButton";
 import "./styles/styles.css";
 
 const store = createXRStore();
 
 export default function App() {
-  const [isInAR, setIsInAR] = useState(false);
+  const [isInVR, setIsInVR] = useState(false);
   const [currentSession, setCurrentSession] = useState<XRSession | null>(null);
   const [isXRSupported, setIsXRSupported] = useState(false);
 
-  // XRデバイスとランタイムの初期化
   useEffect(() => {
     const initializeXR = async () => {
       try {
-        // WebXR APIのサポート確認
         if (!navigator.xr) {
           console.error("WebXR API is not supported");
           return;
         }
 
-        // PC上でのデバッグ用のXRデバイスエミュレーション
+        // PC上でデバッグするためのXRデバイスエミュレーション
         // 実機での動作確認時は、この部分をコメントアウトしてください
         const xrDevice = new XRDevice(metaQuest3);
         xrDevice.installRuntime();
 
-        // XRセッションのサポート確認
         const isSupported = await navigator.xr.isSessionSupported(
-          "immersive-ar"
+          "immersive-vr"
         );
         setIsXRSupported(isSupported);
 
         if (!isSupported) {
-          console.error("AR is not supported on this device");
+          console.error("VR is not supported on this device");
           return;
         }
 
         const handleSessionEnd = () => {
-          setIsInAR(false);
+          setIsInVR(false);
           setCurrentSession(null);
         };
 
@@ -48,14 +45,12 @@ export default function App() {
           setCurrentSession(event.detail.session);
         };
 
-        // イベントリスナーの設定
         window.addEventListener("xrsessionend", handleSessionEnd);
         window.addEventListener(
           "xrsessionupdate",
           handleSessionUpdate as EventListener
         );
 
-        // クリーンアップ
         return () => {
           window.removeEventListener("xrsessionend", handleSessionEnd);
           window.removeEventListener(
@@ -71,23 +66,22 @@ export default function App() {
     initializeXR();
   }, []);
 
-  // ARモードの切り替え処理
-  const handleARToggle = async () => {
+  const handleVRToggle = async () => {
     if (!isXRSupported) {
-      console.error("AR is not supported on this device");
+      console.error("VR is not supported on this device");
       return;
     }
 
     try {
-      if (isInAR && currentSession) {
+      if (isInVR && currentSession) {
         await currentSession.end();
-        setIsInAR(false);
+        setIsInVR(false);
       } else {
-        await store.enterAR();
-        setIsInAR(true);
+        await store.enterVR();
+        setIsInVR(true);
       }
     } catch (error) {
-      console.error("Failed to toggle AR mode:", error);
+      console.error("Failed to toggle VR mode:", error);
     }
   };
 
@@ -101,7 +95,7 @@ export default function App() {
         </Canvas>
       </div>
       {isXRSupported && (
-        <ARButton isInAR={isInAR} onToggleAR={handleARToggle} />
+        <VRButton isInVR={isInVR} onToggleVR={handleVRToggle} />
       )}
     </div>
   );
