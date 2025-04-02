@@ -23,10 +23,9 @@ export default function App() {
           return;
         }
 
-        // XRデバイスの初期化
+        // PC上でのデバッグ用のXRデバイスエミュレーション
+        // 実機での動作確認時は、この部分をコメントアウトしてください
         const xrDevice = new XRDevice(metaQuest3);
-
-        // ランタイムのインストール
         xrDevice.installRuntime();
 
         // XRセッションのサポート確認
@@ -79,20 +78,16 @@ export default function App() {
       return;
     }
 
-    if (isInAR && currentSession) {
-      try {
+    try {
+      if (isInAR && currentSession) {
         await currentSession.end();
         setIsInAR(false);
-      } catch (error) {
-        console.error("Failed to end AR session:", error);
-      }
-    } else {
-      try {
+      } else {
         await store.enterAR();
         setIsInAR(true);
-      } catch (error) {
-        console.error("Failed to enter AR mode:", error);
       }
+    } catch (error) {
+      console.error("Failed to toggle AR mode:", error);
     }
   };
 
