@@ -21,7 +21,7 @@
   left: 50%;
   transform: translateX(-50%);
   padding: 12px 24px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #4c58ffcc;
   color: white;
   border: none;
   border-radius: 8px;
@@ -32,7 +32,7 @@
 }
 
 .ar-button:hover {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #3c45c8cc;
 }
 
 .ar-button.active {
