@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-export const colors = ["blue", "red", "green", "yellow", "purple"];
+const colors = ["blue", "red", "green", "yellow", "purple"];
 
 /**
  * 色変更のロジックを管理するカスタムフック

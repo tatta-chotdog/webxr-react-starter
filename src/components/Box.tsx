@@ -1,7 +1,7 @@
+import { useEffect } from "react";
+import { useXR } from "@react-three/xr";
 import { useColorChange } from "../hooks/useColorChange";
 import { useRotation } from "../hooks/useRotation";
-import { useXR } from "@react-three/xr";
-import { useEffect } from "react";
 
 export const Box = () => {
   const { currentColor, debouncedColorChange } = useColorChange();

@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { Environment } from "@react-three/drei";
 import { useXR } from "@react-three/xr";
-import { useEffect } from "react";
 import { Box } from "./Box";
 
 export const Scene = () => {

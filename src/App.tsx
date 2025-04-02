@@ -1,6 +1,6 @@
+import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { XR, createXRStore } from "@react-three/xr";
-import { useState, useEffect } from "react";
 import { XRDevice, metaQuest3 } from "iwer";
 import { Scene } from "./components/Scene";
 import { VRButton } from "./components/VRButton";
