@@ -1,6 +1,5 @@
 import { useState, useCallback } from "react";
 
-// 利用可能な色の配列
 export const colors = ["blue", "red", "green", "yellow", "purple"];
 
 /**
@@ -13,7 +12,6 @@ export const useColorChange = () => {
   const [colorIndex, setColorIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
 
-  // 色変更の基本ハンドラー
   // useCallbackで関数をメモ化し、不要な再生成を防止
   const handleColorChange = useCallback(() => {
     setColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
