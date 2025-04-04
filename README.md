@@ -1,4 +1,5 @@
 # WebXR React Starter
+![webxr-react-starter](https://github.com/user-attachments/assets/63317daa-1da9-405b-bb75-e695b30fefdd)
 
 ## react-three/xr
 
