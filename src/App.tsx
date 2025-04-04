@@ -67,21 +67,34 @@ export default function App() {
   }, []);
 
   const handleVRToggle = async () => {
-    if (!isXRSupported) {
-      console.error("VR is not supported on this device");
-      return;
-    }
-
     try {
-      if (isInVR && currentSession) {
-        await currentSession.end();
+      if (isInVR) {
+        const session = store.getState().session;
+        if (session) {
+          await session.end();
+        }
         setIsInVR(false);
+        setCurrentSession(null);
       } else {
+        if (currentSession) {
+          await currentSession.end();
+          setCurrentSession(null);
+        }
         await store.enterVR();
         setIsInVR(true);
       }
     } catch (error) {
       console.error("Failed to toggle VR mode:", error);
+      setIsInVR(false);
+      setCurrentSession(null);
+      try {
+        const session = store.getState().session;
+        if (session) {
+          await session.end();
+        }
+      } catch (e) {
+        console.error("Failed to force end session:", e);
+      }
     }
   };
 
