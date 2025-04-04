@@ -5,7 +5,7 @@ import { Color } from "three";
  * 色変更のロジックを管理するカスタムフック
  */
 export const useColorChange = () => {
-  const [currentColor, setCurrentColor] = useState<string>("#0000ff"); // 初期色を青に設定
+  const [currentColor, setCurrentColor] = useState<string>("#0000ff");
   const [isChanging, setIsChanging] = useState(false);
 
   const makeColorBrighter = useCallback((color: string) => {
@@ -29,6 +29,6 @@ export const useColorChange = () => {
   return {
     currentColor,
     debouncedColorChange,
-    setCurrentColor, // levaからの色変更用にsetCurrentColorを公開
+    setCurrentColor,
   };
 };

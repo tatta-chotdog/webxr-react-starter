@@ -1,17 +1,7 @@
-import { useEffect } from "react";
 import { Environment } from "@react-three/drei";
-import { useXR } from "@react-three/xr";
 import { Box } from "./Box";
 
 export const Scene = () => {
-  const { session } = useXR();
-
-  useEffect(() => {
-    window.dispatchEvent(
-      new CustomEvent("xrsessionupdate", { detail: { session } })
-    );
-  }, [session]);
-
   return (
     <>
       <Environment preset="apartment" background blur={0.5} />
