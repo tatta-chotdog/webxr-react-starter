@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { Vector3 } from "three";
 import { useXR } from "@react-three/xr";
 import { useColorChange } from "../hooks/useColorChange";
 import { useRotation } from "../hooks/useRotation";
 import { DebugPanel } from "./DebugPanel";
-import { Vector3 } from "three";
 
 export const Box = () => {
   const { currentColor, debouncedColorChange, setCurrentColor } =

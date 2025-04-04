@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
 import { Mesh } from "three";
+import { useFrame } from "@react-three/fiber";
 
 export const useRotation = (speed: number = 0.5) => {
   const meshRef = useRef<Mesh>(null);
