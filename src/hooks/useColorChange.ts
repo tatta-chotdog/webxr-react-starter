@@ -14,7 +14,7 @@ export const useColorChange = () => {
     return "#" + colorObj.getHexString();
   }, []);
 
-  const debouncedColorChange = useCallback(() => {
+  const changeBoxColor = useCallback(() => {
     if (!isChanging) {
       setIsChanging(true);
       const originalColor = currentColor;
@@ -28,7 +28,7 @@ export const useColorChange = () => {
 
   return {
     currentColor,
-    debouncedColorChange,
+    changeBoxColor,
     setCurrentColor,
   };
 };

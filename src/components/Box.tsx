@@ -6,8 +6,7 @@ import { useRotation } from "../hooks/useRotation";
 import { DebugPanel } from "./DebugPanel";
 
 export const Box = () => {
-  const { currentColor, debouncedColorChange, setCurrentColor } =
-    useColorChange();
+  const { currentColor, changeBoxColor, setCurrentColor } = useColorChange();
   const [rotateSpeed, setRotateSpeed] = useState<number>(0.5);
   const meshRef = useRotation(rotateSpeed);
   const { session } = useXR();
@@ -16,11 +15,10 @@ export const Box = () => {
 
   useEffect(() => {
     if (session) {
-      session.addEventListener("selectstart", debouncedColorChange);
-      return () =>
-        session.removeEventListener("selectstart", debouncedColorChange);
+      session.addEventListener("selectstart", changeBoxColor);
+      return () => session.removeEventListener("selectstart", changeBoxColor);
     }
-  }, [session, debouncedColorChange]);
+  }, [session, changeBoxColor]);
 
   return (
     <>
@@ -28,7 +26,7 @@ export const Box = () => {
         ref={meshRef}
         position={[position.x, position.y, position.z]}
         scale={[scale.x, scale.y, scale.z]}
-        onClick={debouncedColorChange}
+        onClick={changeBoxColor}
       >
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={currentColor} />
