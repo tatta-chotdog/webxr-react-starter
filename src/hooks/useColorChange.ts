@@ -1,31 +1,34 @@
 import { useState, useCallback } from "react";
-
-const colors = ["blue", "red", "green", "yellow", "purple"];
+import { Color } from "three";
 
 /**
  * 色変更のロジックを管理するカスタムフック
  */
 export const useColorChange = () => {
-  const [colorIndex, setColorIndex] = useState(0);
+  const [currentColor, setCurrentColor] = useState<string>("#0000ff"); // 初期色を青に設定
   const [isChanging, setIsChanging] = useState(false);
 
-  // useCallbackで関数をメモ化し、不要な再生成を防止
-  const handleColorChange = useCallback(() => {
-    setColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
+  const makeColorBrighter = useCallback((color: string) => {
+    const colorObj = new Color(color);
+    colorObj.offsetHSL(0, 0, 0.1); // 明度を10%上げる
+    return "#" + colorObj.getHexString();
   }, []);
 
-  // デバウンス処理付きの色変更ハンドラー
-  // 300msのクールダウン中は追加の色変更をブロック
   const debouncedColorChange = useCallback(() => {
     if (!isChanging) {
       setIsChanging(true);
-      handleColorChange();
-      setTimeout(() => setIsChanging(false), 300);
+      const originalColor = currentColor;
+      setCurrentColor(makeColorBrighter(currentColor));
+      setTimeout(() => {
+        setCurrentColor(originalColor);
+        setIsChanging(false);
+      }, 300);
     }
-  }, [isChanging, handleColorChange]);
+  }, [isChanging, currentColor, makeColorBrighter]);
 
   return {
-    currentColor: colors[colorIndex],
+    currentColor,
     debouncedColorChange,
+    setCurrentColor, // levaからの色変更用にsetCurrentColorを公開
   };
 };
