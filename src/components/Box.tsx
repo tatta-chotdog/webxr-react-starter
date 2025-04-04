@@ -6,10 +6,10 @@ import { DebugPanel } from "./DebugPanel";
 
 export const Box = () => {
   const { currentColor, changeBoxColor, setCurrentColor } = useColorChange();
-  const [rotateSpeed, setRotateSpeed] = useState<number>(0.5);
-  const meshRef = useRotation(rotateSpeed);
   const [position, setPosition] = useState<Vector3>(new Vector3(0, 1.5, -1));
   const [scale, setScale] = useState<Vector3>(new Vector3(0.3, 0.3, 0.3));
+  const [rotateSpeed, setRotateSpeed] = useState<number>(0.5);
+  const meshRef = useRotation(rotateSpeed);
 
   return (
     <>

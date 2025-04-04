@@ -20,7 +20,6 @@ export default function App() {
           console.error("WebXR API is not supported");
           return;
         }
-
         // PC上でデバッグするためのXRデバイスエミュレーション
         // 実機での動作確認時は、この部分をコメントアウトしてください
         const xrDevice = new XRDevice(metaQuest3);
@@ -62,7 +61,6 @@ export default function App() {
         console.error("Failed to initialize XR:", error);
       }
     };
-
     initializeXR();
   }, []);
 
