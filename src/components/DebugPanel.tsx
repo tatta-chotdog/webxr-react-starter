@@ -2,24 +2,24 @@ import { Vector3 } from "three";
 import { useControls } from "leva";
 
 interface DebugPanelProps {
-  color: string;
   position: Vector3;
   scale: Vector3;
-  rotation: Vector3;
+  rotateSpeed: number;
+  color: string;
   onPositionChange: (v: Vector3) => void;
   onScaleChange: (v: Vector3) => void;
-  onRotationChange: (v: Vector3) => void;
+  onRotateSpeedChange: (v: number) => void;
   onColorChange: (v: string) => void;
 }
 
 export const DebugPanel = ({
-  color,
   position,
   scale,
-  rotation,
+  rotateSpeed,
+  color,
   onPositionChange,
   onScaleChange,
-  onRotationChange,
+  onRotateSpeedChange,
   onColorChange,
 }: DebugPanelProps) => {
   useControls({
@@ -35,10 +35,13 @@ export const DebugPanel = ({
         onScaleChange(new Vector3(v.x, v.y, v.z));
       },
     },
-    Rotation: {
-      value: { x: rotation.x, y: rotation.y, z: rotation.z },
-      onChange: (v) => {
-        onRotationChange(new Vector3(v.x, v.y, v.z));
+    RotateSpeed: {
+      value: rotateSpeed,
+      min: 0,
+      max: 5,
+      step: 0.1,
+      onChange: (v: number) => {
+        onRotateSpeedChange(v);
       },
     },
     Color: {
@@ -48,6 +51,5 @@ export const DebugPanel = ({
       },
     },
   });
-
   return null;
 };

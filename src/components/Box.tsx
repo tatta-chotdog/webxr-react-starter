@@ -8,11 +8,11 @@ import { Vector3 } from "three";
 export const Box = () => {
   const { currentColor, debouncedColorChange, setCurrentColor } =
     useColorChange();
-  const meshRef = useRotation();
+  const [rotateSpeed, setRotateSpeed] = useState<number>(0.5);
+  const meshRef = useRotation(rotateSpeed);
   const { session } = useXR();
   const [position, setPosition] = useState<Vector3>(new Vector3(0, 1.5, -1));
   const [scale, setScale] = useState<Vector3>(new Vector3(0.3, 0.3, 0.3));
-  const [rotation, setRotation] = useState<Vector3>(new Vector3(0, 0, 0));
 
   useEffect(() => {
     if (session) {
@@ -28,7 +28,6 @@ export const Box = () => {
         ref={meshRef}
         position={[position.x, position.y, position.z]}
         scale={[scale.x, scale.y, scale.z]}
-        rotation={[rotation.x, rotation.y, rotation.z]}
         onClick={debouncedColorChange}
       >
         <boxGeometry args={[1, 1, 1]} />
@@ -38,10 +37,10 @@ export const Box = () => {
         color={currentColor}
         position={position}
         scale={scale}
-        rotation={rotation}
+        rotateSpeed={rotateSpeed}
         onPositionChange={setPosition}
         onScaleChange={setScale}
-        onRotationChange={setRotation}
+        onRotateSpeedChange={setRotateSpeed}
         onColorChange={setCurrentColor}
       />
     </>

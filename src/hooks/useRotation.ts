@@ -5,7 +5,7 @@ import { Mesh } from "three";
 export const useRotation = (speed: number = 0.5) => {
   const meshRef = useRef<Mesh>(null);
 
-  useFrame((_state, delta: number) => {
+  useFrame((_, delta) => {
     if (meshRef.current) {
       meshRef.current.rotation.x += delta * speed;
       meshRef.current.rotation.y += delta * speed;
