@@ -14,7 +14,7 @@ yarn dev
 
 `https://???.???.?.?:8081/`
 
-## Learn more about WebXR
+## Learn More
 ### WebXR
 
 https://immersiveweb.dev/
