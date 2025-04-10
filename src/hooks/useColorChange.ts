@@ -10,7 +10,7 @@ export const useColorChange = () => {
 
   const makeColorBrighter = useCallback((color: string) => {
     const colorObj = new Color(color);
-    colorObj.offsetHSL(0, 0, 0.2); // 明度を10%上げる
+    colorObj.offsetHSL(0, 0, 0.2); // 明度を20%上げる
     return "#" + colorObj.getHexString();
   }, []);
 
