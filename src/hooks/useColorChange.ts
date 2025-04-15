@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { Color } from "three";
 
 /**
- * 色変更のロジックを管理するカスタムフック
+ * Color change logic management custom hook
  */
 export const useColorChange = () => {
   const [currentColor, setCurrentColor] = useState<string>("#0000ff");
@@ -10,7 +10,7 @@ export const useColorChange = () => {
 
   const makeColorBrighter = useCallback((color: string) => {
     const colorObj = new Color(color);
-    colorObj.offsetHSL(0, 0, 0.2); // 明度を20%上げる
+    colorObj.offsetHSL(0, 0, 0.2); // Increase brightness by 20%
     return "#" + colorObj.getHexString();
   }, []);
 

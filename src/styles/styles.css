@@ -1,4 +1,4 @@
-/* アプリケーション全体のスタイル */
+/* Application-wide styles */
 .app-container {
   width: 100vw;
   height: 100vh;
@@ -14,7 +14,7 @@
   left: 0;
 }
 
-/* VRボタンのスタイル */
+/* VR button styles */
 .vr-button {
   position: fixed;
   bottom: 20px;
