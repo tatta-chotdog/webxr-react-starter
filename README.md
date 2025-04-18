@@ -1,5 +1,5 @@
 # WebXR React Starter
-![react](https://github.com/user-attachments/assets/63105dd8-8463-47ac-94de-a47307525884)
+![react_cropped_precise](https://github.com/user-attachments/assets/51203752-6b18-46f9-871a-8e3ccd27b9f6)
 
 ## How to run it on your HMD?
 ### Run it Locally  
