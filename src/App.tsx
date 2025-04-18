@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { XR, createXRStore } from "@react-three/xr";
 import { XRDevice, metaQuest3 } from "iwer";
-import { Scene } from "./components/Scene";
+import { Experience } from "./components/Experience";
 import { VRButton } from "./components/VRButton";
 import "./styles/styles.css";
 
@@ -101,7 +101,7 @@ export default function App() {
       <div className="canvas-container">
         <Canvas>
           <XR store={store}>
-            <Scene />
+            <Experience />
           </XR>
         </Canvas>
       </div>

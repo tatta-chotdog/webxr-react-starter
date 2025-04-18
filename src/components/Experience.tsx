@@ -1,6 +1,6 @@
 import { Box } from "./Box";
 
-export const Scene = () => {
+export const Experience = () => {
   return (
     <>
       <Box />
